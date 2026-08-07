@@ -44,6 +44,13 @@ export OS_IMAGE=dstack-0.5.8
 # Custom NEAR accounts
 export NODE_ACCOUNT=frodo.test.near
 export CONTRACT_ACCOUNT=mpc-contract.test.near
+
+# Script executed inside the CVM before docker compose up. Required when you
+# need SSH into the dev CVM (e.g. to export the node's signer key while
+# collecting test assets): dstack >= 0.5.6 dev images expose no SSH unless a
+# pre-launch script installs an authorized key. Example script content:
+#   mkdir -p /root/.ssh && echo "ssh-ed25519 AAAA... you@host" >> /root/.ssh/authorized_keys
+export PRELAUNCH_SCRIPT=/path/to/prelaunch.sh
 ```
 
 ## Run

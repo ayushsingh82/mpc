@@ -132,6 +132,13 @@ OS_IMAGE="${OS_IMAGE:-dstack-dev-0.5.8}"
 SEALING_KEY_TYPE="${SEALING_KEY_TYPE:-SGX}"
 DISK="${DISK:-500G}"
 
+# Optional: path to a script baked into the app-compose and executed inside
+# the CVM before docker compose up. dstack >= 0.5.6 dev images expose no SSH
+# by default, so collecting test assets (which requires exporting the node's
+# signer key from the CVM) needs a pre-launch script that installs an
+# authorized key. Consumed by deploy-launcher.sh.
+export PRELAUNCH_SCRIPT="${PRELAUNCH_SCRIPT:-}"
+
 # Paths
 REPO_ROOT="${REPO_ROOT:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
 TEE_LAUNCHER_DIR="$REPO_ROOT/deployment/cvm-deployment"
